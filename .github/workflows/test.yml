@@ -1,0 +1,33 @@
+name: Build with PyInstaller to main Branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+        
+    - name: List files in dist directory
+      run: dir .\dist
+            
+    - name: Commit and push artifact and version update
+      run: |
+        touch test.txt
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add exe_version.txt
+        git add test.txt
+        git commit -m "updated version"
+        git push
+      shell: bash
