@@ -23,7 +23,7 @@ jobs:
         touch testing.txt
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add exe_version.txt
+        git add testing.txt
         git add testing.txt
         git commit -m "updated version"
         git push
